@@ -1,15 +1,22 @@
+// Discord stuff
 const Discord = require('discord.js');
 const bot = new Discord.Client();
+
+// Imports/ requires
 const { token } = require('./settings');
+const { Strings } = require('./strings');
 
+// Local const variables
 const classicReleaseDate = new Date("Aug 26, 2019 18:00:00").getTime();
+const strings = new Strings;
 
+// Bot code
 bot.on('ready', () => {
   console.log('WHERES MY DEW!?!?!');
 })
 
 bot.on('message', msg => {
-  if (msg.content === 'Time til classic?') {
+  if (msg.content.toLowerCase().includes(strings.wowClassicStrings)) {
     var today = new Date();
     var timeTilClassic = classicReleaseDate - today;
 
@@ -21,7 +28,7 @@ bot.on('message', msg => {
     msg.reply('Wow classic is ' +
       days + ' days, ' +
       hours + ' hours, ' +
-      minutes + ' minutes, ' +
+      minutes + ' minutes, and ' +
       seconds + ' seconds away!');
   }
 
