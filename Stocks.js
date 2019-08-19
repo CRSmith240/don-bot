@@ -3,8 +3,11 @@ const fetch = require('node-fetch');
 
 class Stocks {
 
-  async nakTicker() {
-    let av_response = await fetch(`https://www.alphavantage.co/query?function=TIME_SERIES_INTRADAY&symbol=NAK&interval=5min&apikey=${av_key}`)
+  async nakTicker(time) {
+    var api = this.getAPINameAndParams(time);
+    var url = `https://www.alphavantage.co/query?function=${api[0]}&symbol=NAK&${api[1]}&apikey=${av_key}`
+
+    let av_response = await fetch(url)
       .then(function (response) { return response.json(); })
       .then(function (json) { return json; })
       .catch(error => msg.reply('alpha vantage might be rejecting api calls: ' + error.message));
@@ -15,7 +18,11 @@ class Stocks {
     var values = av_response[keys[1]][times[0]];
 
     var keys = Object.keys(values);
-    var response = `Thanks for tuning into the DonBotTicker™ - The currently fetched span for NAK is ${times[1]} - ${times[0]}:\n`;
+
+    var date = new Date().toISOString().split('T')[0];
+
+    var span = time === '1' ? date.toString() : `${times[1]} - ${times[0]}`
+    var response = `Thanks for tuning into the DonBotTicker™ - The currently fetched span for NAK is ${span}:\n`;
 
     for (var key in keys) {
       var dataPoint = keys[key].split(' ')[1];
@@ -23,6 +30,20 @@ class Stocks {
     }
     console.log(response);
     return response;
+  }
+
+  getAPINameAndParams(time) {
+    var api_name = '';
+    var param = '';
+    if (time === '1') {
+      api_name = 'TIME_SERIES_DAILY';
+      param = 'outputsize=full'
+    }
+    else {
+      api_name = 'TIME_SERIES_INTRADAY'
+      param = `interval=${time}min`
+    }
+    return [api_name, param];
   }
 }
 module.exports = Stocks

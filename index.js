@@ -30,9 +30,19 @@ bot.on('message', async msg => {
     msg.reply("Hi");
   }
 
-  if(msg.content === 'NAK') {
-    let stockValues = await new Stocks().nakTicker();
-    msg.reply(stockValues);
+  if(msg.content.includes('NAK')) {
+    var time = '1';
+    if(msg.content.match(/NAK \d+/)){
+      console.log('a');
+      time = msg.content.split(' ')[1];
+      let stockValues = await new Stocks().nakTicker(time);
+      msg.reply(stockValues);
+    }
+    else if(msg.content === 'NAK'){
+      console.log('b');
+      let stockValues = await new Stocks().nakTicker(time);
+      msg.reply(stockValues);
+    }
   }
 })
 
