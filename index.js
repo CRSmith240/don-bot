@@ -4,7 +4,7 @@ const bot = new Discord.Client();
 
 // Imports/ requires
 const { token } = require('./settings');
-const { Strings } = require('./strings');
+const Stocks = require('./Stocks.js');
 
 // Local const variables
 const classicReleaseDate = new Date("Aug 26, 2019 18:00:00").getTime();
@@ -15,8 +15,8 @@ bot.on('ready', () => {
   console.log('WHERES MY DEW!?!?!');
 })
 
-bot.on('message', msg => {
-  if (msg.content.toLowerCase().includes(strings.wowClassicStrings)) {
+bot.on('message', async msg => {
+  if (msg.content === 'Time til classic?') {
     var today = new Date();
     var timeTilClassic = classicReleaseDate - today;
 
@@ -34,6 +34,11 @@ bot.on('message', msg => {
 
   if (msg.content === 'Test') {
     msg.reply("Hi");
+  }
+
+  if(msg.content === 'NAK') {
+    let stockValues = await new Stocks().nakTicker();
+    msg.reply(stockValues);
   }
 })
 
