@@ -1,6 +1,6 @@
 class Classic {
   getClassicMessage() {
-    const classicReleaseDate = new Date("Aug 26, 2019 18:00:00").getTime();
+    const classicReleaseDate = new Date("Aug 26, 2019 22:00:00").getTime();
     const today = new Date();
     const timeTilClassic = classicReleaseDate - today;
 
