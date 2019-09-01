@@ -14,10 +14,10 @@ bot.on('ready', () => {
 })
 
 bot.on('message', async msg => {
-  if (msg.content.toLowerCase().includes('classic')) {
-    let classicMessage = classic.getClassicMessage();
-    msg.reply(classicMessage);
-  }
+  // if (msg.content.toLowerCase().includes('classic')) {
+  //   let classicMessage = classic.getClassicMessage();
+  //   msg.reply(classicMessage);
+  // }
 
   if(msg.content.includes('NAK')) {
     var time = '1';
