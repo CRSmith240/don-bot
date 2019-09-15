@@ -35,7 +35,7 @@ bot.on('message', async msg => {
 
   if(msg.content == "Jacob Bradley") {
     var name = Math.floor(Math.random() * (JacobNames['names'].length-1))
-    msg.reply(JacobNames['names'][name]);
+    msg.channel.send(JacobNames['names'][name]);
   }
 })
 
