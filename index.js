@@ -33,7 +33,7 @@ bot.on('message', async msg => {
     }
   }
 
-  if(msg.content == "Jacob Bradley") {
+  if(msg.content.toLowerCase() == "jacob bradley") {
     var name = Math.floor(Math.random() * (JacobNames['names'].length-1))
     msg.channel.send(JacobNames['names'][name]);
   }
