@@ -33,9 +33,14 @@ bot.on('message', async msg => {
     }
   }
 
-  if(msg.content.toLowerCase() == "jacob bradley") {
-    var name = Math.floor(Math.random() * (JacobNames['names'].length-1))
+  if(msg.content.toLowerCase().includes("jacob bradley")) {
+    var name = Math.floor(Math.random() * (JacobNames['names'].length-1));
     msg.channel.send(JacobNames['names'][name]);
+  }
+
+  if(msg.content.toLowerCase().includes('birb')) {
+    var file = Math.floor(Math.random() * 19);
+    msg.channel.send({files: [`./bot-resources/birbs/birb${file}.jpg`]});
   }
 })
 
