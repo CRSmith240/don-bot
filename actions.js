@@ -27,8 +27,8 @@ class Actions{
           }
         }
 
-      let result = this.dict[action]();
-      return result;
+      return this.dict[action]();
+
     }
     catch{
       return false;
@@ -43,8 +43,7 @@ class Actions{
   }
 
   async Nak() {
-    var time = '1';
-    return await new Stocks().nakTicker(time);
+    return await new Stocks().nakTicker('1');
   }
 
   Birb() {
