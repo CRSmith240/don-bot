@@ -17,6 +17,9 @@ bot.on('message', async msg => {
   if(msg.author.bot) {
     return;
   }
+  else if(msg.channel.name == 'fuck' && !msg.content.toLowerCase().includes('fuck')){
+    msg.reply("If you don't say fuck in #fuck, get the fuck out");
+  }
 
   let result = await actions.getAction(msg.content.toLowerCase())
 
