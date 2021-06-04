@@ -12,6 +12,7 @@ class Actions{
     'birb': this.Birb,
     'classic': this.ClassicMsg,
     '!mock': this.MockMessage,
+    '!yikes': this.Yikes,
   }
 
   inclusiveCommands = ['jacob bradley']; // add to this if you want your command to trigger in sentences (e.g., "something jacob bradley something");
@@ -29,7 +30,7 @@ class Actions{
           }
         }
 
-      wholeMessage[0] == "!" ? this.dict[action.split(/\s/)[0]](wholeMessage) : this.dict[action]()
+      return wholeMessage[0] == "!" ? this.dict[action.split(/\s/)[0]](wholeMessage) : this.dict[action]()
 
     }
     catch{
@@ -42,6 +43,10 @@ class Actions{
   Jacob() {
     var name = Math.floor(Math.random() * (JacobNames['names'].length - 1));
     return JacobNames['names'][name];
+  }
+
+  Yikes(message){
+    return "This. Right now. Yikes :flushed:"
   }
 
   MockMessage(message){
