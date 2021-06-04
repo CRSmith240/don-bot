@@ -11,12 +11,14 @@ class Actions{
     'nak': this.Nak,
     'birb': this.Birb,
     'classic': this.ClassicMsg,
+    '!mock': this.MockMessage,
   }
 
   inclusiveCommands = ['jacob bradley']; // add to this if you want your command to trigger in sentences (e.g., "something jacob bradley something");
 
   getAction(action) {
     try{
+      var wholeMessage = action;
       for(var cmd of this.inclusiveCommands) {
           if (action.includes(cmd)) {
             action = cmd;
@@ -27,7 +29,7 @@ class Actions{
           }
         }
 
-      return this.dict[action]();
+      wholeMessage[0] == "!" ? this.dict[action.split(/\s/)[0]](wholeMessage) : this.dict[action]()
 
     }
     catch{
@@ -40,6 +42,20 @@ class Actions{
   Jacob() {
     var name = Math.floor(Math.random() * (JacobNames['names'].length - 1));
     return JacobNames['names'][name];
+  }
+
+  MockMessage(message){
+    message = message.split('!mock')[1].trim();
+    var mockMessage = "";
+    for(var x = 0; x < message.length; x++){
+      if(Math.random() > .5){
+        mockMessage += message[x].toUpperCase();
+      }
+      else{
+        mockMessage += message[x]
+      }
+    }
+    return mockMessage;
   }
 
   async Nak() {
