@@ -1,4 +1,5 @@
 settings.json
+node_modules
 node_modules/tweetnacl/PULL_REQUEST_TEMPLATE.md
 node_modules/async-limiter/.nycrc
 node_modules/async-limiter/.travis.yml
